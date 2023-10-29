@@ -1,15 +1,13 @@
-### Setup
+# DiscordChat
 
-Clone this repository first.
-To edit the plugin display name and other data, take a look at `plugin.json`.
-Edit the name of the project itself by going into `settings.gradle`.
+Link your chat from mindustry to discord and vice versa
 
-### Basic Usage
+### Planned Features
 
-See `src/example/ExamplePlugin.java` for some basic commands and event handlers.  
-Every main plugin class must extend `Plugin`. Make sure that `plugin.json` points to the correct main plugin class.
-
-Please note that the plugin system is in beta, and as such is subject to changes.
+* Log channel for commands used by players
+* Game info (map, wave, resources, mods, plugins, etc...)
+* Player info
+* Game info in real time (maybe?)
 
 ### Building a Jar
 
@@ -20,5 +18,6 @@ Output jar should be in `build/libs`.
 
 ### Installing
 
-Simply place the output jar from the step above in your server's `config/mods` directory and restart the server.
+Simply place the output jar from the step above or from releases in your server's `config/mods` directory and restart the server.
 List your currently installed plugins/mods by running the `mods` command.
+The mod config will be created at `config/mods/DiscordChat/config.json` after restarting the server, you can reload the config at anytime by using the `reloadconfig` server command

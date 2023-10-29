@@ -16,8 +16,7 @@ repositories{
 }
 
 ext{
-    //the build number that this plugin is made for
-    mindustryVersion = 'v145'
+    mindustryVersion = 'v146'
     jabelVersion = "93fde537c7"
 }
 
@@ -32,15 +31,21 @@ dependencies{
     compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
     compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
     annotationProcessor "com.github.Anuken:jabel:$jabelVersion"
+    implementation "org.javacord:javacord:3.8.0"
+    implementation 'org.json:json:20230227'
 }
 
 jar{
-    archiveFileName = "${project.archivesBaseName}.jar"
-    from{
-        configurations.runtimeClasspath.collect{it.isDirectory() ? it : zipTree(it)}
+    archiveFileName = "DiscordChat.jar"
+    from({configurations.runtimeClasspath.collect{it.isDirectory() ? it : zipTree(it)}}){
+        exclude '**/META-INF/*.SF'
+        exclude '**/META-INF/*.DSA'
+        exclude '**/META-INF/*.RSA'
     }
 
     from(rootDir){
         include "plugin.json"
     }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

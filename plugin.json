@@ -1,7 +1,7 @@
 {
-  "name": "ExamplePlugin",
-  "author": "Anuke",
-  "main": "example.ExamplePlugin",
-  "description": "A plugin to demonstrate some basic features.",
+  "name": "DiscordChat",
+  "author": "King-BR",
+  "main": "discordchat.DiscordChat",
+  "description": "Link mindustry to discord chat",
   "version": 1.0
 }
