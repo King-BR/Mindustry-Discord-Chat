@@ -19,6 +19,8 @@ public class Config {
         "channel_log", ""
     },{
         "channel_announcement", ""
+    },{
+        "server_ip", ""
     }};
 
     public static JSONObject createConfig(DiscordChat plugin) {

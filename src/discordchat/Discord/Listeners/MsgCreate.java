@@ -1,10 +1,13 @@
 package discordchat.Discord.Listeners;
 
+import discordchat.Discord.Commands.Ip;
 import discordchat.Discord.internal.sendMsgToGame;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
+
+import java.util.stream.Stream;
 
 import static discordchat.DiscordChat.config;
 
@@ -23,13 +26,19 @@ public class MsgCreate implements MessageCreateListener {
         if (event.getServerTextChannel().isPresent() && event.getMessageAuthor().isRegularUser()) {
             ServerTextChannel channel = event.getServerTextChannel().get();
 
-            if (channel.getIdAsString().equals(config.getString("channel_chat"))) {
-                if (!event.getMessageContent().startsWith(prefix)) {
+            if (!event.getMessageContent().startsWith(prefix)) {
+                if (channel.getIdAsString().equals(config.getString("channel_chat"))) {
                     new sendMsgToGame(bot, event, config);
                     return;
                 }
+            } else if (channel.getIdAsString().equals(config.getString("channel_chat")) ||
+                        channel.getIdAsString().equals(config.getString("channel_log")) ||
+                        channel.getIdAsString().equals(config.getString("channel_announcement"))) {
+                String[] args = Stream.of(event.getMessageContent().split(" ")).filter(str -> !str.isBlank()).toArray(String[]::new);
 
-                return;
+                switch (args[0].replaceFirst(prefix, "")) {
+                    case "ip" -> new Ip(bot, config, event, args);
+                }
             }
         }
     }
