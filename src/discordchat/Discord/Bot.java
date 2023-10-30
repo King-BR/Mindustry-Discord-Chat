@@ -1,7 +1,7 @@
 package discordchat.Discord;
 
 import arc.util.Log;
-import discordchat.Discord.Listerners.MsgCreate;
+import discordchat.Discord.Listeners.MsgCreate;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 

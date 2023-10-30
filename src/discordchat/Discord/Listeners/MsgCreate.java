@@ -1,4 +1,4 @@
-package discordchat.Discord.Listerners;
+package discordchat.Discord.Listeners;
 
 import discordchat.Discord.internal.sendMsgToGame;
 import org.javacord.api.DiscordApi;
