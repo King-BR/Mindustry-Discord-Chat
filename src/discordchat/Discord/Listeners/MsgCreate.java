@@ -29,12 +29,11 @@ public class MsgCreate implements MessageCreateListener {
             if (!event.getMessageContent().startsWith(prefix)) {
                 if (channel.getIdAsString().equals(config.getString("channel_chat"))) {
                     new sendMsgToGame(bot, event, config);
-                    return;
                 }
             } else if (channel.getIdAsString().equals(config.getString("channel_chat")) ||
                         channel.getIdAsString().equals(config.getString("channel_log")) ||
                         channel.getIdAsString().equals(config.getString("channel_announcement"))) {
-                String[] args = Stream.of(event.getMessageContent().split(" ")).filter(str -> !str.isBlank()).toArray(String[]::new);
+                String[] args = Stream.of(event.getMessageContent().split(" ")).filter(str -> !str.isEmpty()).toArray(String[]::new);
 
                 switch (args[0].replaceFirst(prefix, "")) {
                     case "ip" -> new Ip(bot, config, event, args);
