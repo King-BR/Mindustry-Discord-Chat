@@ -1,5 +1,6 @@
 package discordchat.Discord.Listeners;
 
+import discordchat.Discord.Commands.GameInfo;
 import discordchat.Discord.Commands.Ip;
 import discordchat.Discord.internal.sendMsgToGame;
 import org.javacord.api.DiscordApi;
@@ -37,6 +38,7 @@ public class MsgCreate implements MessageCreateListener {
 
                 switch (args[0].replaceFirst(prefix, "")) {
                     case "ip" -> new Ip(bot, config, event, args);
+                    case "gameinfo", "gi" -> new GameInfo(bot, config, event, args);
                 }
             }
         }
