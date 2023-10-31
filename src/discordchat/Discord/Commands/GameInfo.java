@@ -6,6 +6,7 @@ import mindustry.game.Team;
 import mindustry.game.Teams;
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
+import mindustry.mod.Mods;
 import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.modules.ItemModule;
 import org.javacord.api.DiscordApi;
@@ -17,6 +18,7 @@ import org.json.JSONObject;
 
 import java.awt.*;
 
+import static mindustry.Vars.mods;
 import static mindustry.Vars.state;
 
 public class GameInfo {
@@ -34,7 +36,6 @@ public class GameInfo {
                 "\nEnemies alive: " + state.enemies;
 
         StringBuilder res = new StringBuilder();
-
         items.each((arg1, arg2) -> res.append(Strings.stripColors(arg1.name))
                 .append(": ")
                 .append(items.get(arg1.id))
@@ -46,20 +47,23 @@ public class GameInfo {
                 "\nDescription: " + state.map.description();
 
         StringBuilder players = new StringBuilder();
-        if (!Groups.player.isEmpty()) {
-            for (Player p : Groups.player) {
-                players.append(Strings.stripColors(p.name())).append(", ");
-            }
-        } else players.append("No player online");
+        for (Player p : Groups.player) {
+            players.append(Strings.stripColors(p.name())).append(", ");
+        }
 
+        StringBuilder modsStr = new StringBuilder();
+        for (Mods.LoadedMod lmod : mods.list()) {
+            modsStr.append(lmod.meta.displayName).append(", ");
+        }
 
         EmbedBuilder embed = new EmbedBuilder()
                 .setColor(Color.ORANGE)
                 .setTimestampToNow()
                 .setTitle("Game info")
                 .setDescription(waves)
+                .addField("Mods", mods.list().size == 0 ? "No mods" : modsStr.substring(0, modsStr.length()-2))
                 .addField("Map", map)
-                .addField("Players", players.toString());
+                .addField("Players", Groups.player.isEmpty() ? "No players online" : players.substring(0, modsStr.length()-2));
 
         EmbedBuilder resEmbed = new EmbedBuilder()
                 .setColor(Color.ORANGE)
