@@ -4,6 +4,8 @@ import arc.Events;
 import arc.util.*;
 import discordchat.Discord.Bot;
 import discordchat.Mindustry.Events.playerChat;
+import discordchat.Mindustry.Events.playerJoin;
+import discordchat.Mindustry.Events.playerLeave;
 import mindustry.game.EventType;
 import mindustry.mod.*;
 import org.javacord.api.DiscordApi;
@@ -21,6 +23,25 @@ public class DiscordChat extends Plugin {
             try {
                 playerChat.run(bot, config, e);
             } catch (IOException | InterruptedException ex) {
+                Log.info("[DiscordChat] A error has ocurred!");
+                ex.printStackTrace();
+            }
+        });
+
+        Events.on(EventType.PlayerJoin.class, e -> {
+            try {
+                playerJoin.run(bot, config, e);
+            } catch (IOException | InterruptedException ex) {
+                Log.info("[DiscordChat] A error has ocurred!");
+                ex.printStackTrace();
+            }
+        });
+
+        Events.on(EventType.PlayerLeave.class, e -> {
+            try {
+                playerLeave.run(bot, config, e);
+            } catch (IOException | InterruptedException ex) {
+                Log.info("[DiscordChat] A error has ocurred!");
                 ex.printStackTrace();
             }
         });
