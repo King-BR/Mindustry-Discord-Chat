@@ -8,7 +8,7 @@ import org.json.JSONObject;
 public class Config {
 
     public static String[][] defaultConfigPairs = {{
-        "plugin_version", "1.1"
+        "config_version", "1.1"
     },{
         "bot_token", ""
     },{
@@ -46,10 +46,10 @@ public class Config {
         JSONObject config = new JSONObject(plugin.getConfig().readString());
         Log.info("[DiscordChat] Config loaded");
 
-        if (!config.has("plugin_version")) config.put("plugin_version", "1.0");
+        if (!config.has(defaultConfigPairs[0][0])) config.put(defaultConfigPairs[0][0], "1.0");
 
-        if (Float.parseFloat(config.getString("plugin_version")) < Float.parseFloat(defaultConfigPairs[0][1])) {
-            Log.info("[DiscordChat] Older config version found!\nCurrent version: " + config.getString("plugin_version") +
+        if (Float.parseFloat(config.getString(defaultConfigPairs[0][0])) < Float.parseFloat(defaultConfigPairs[0][1])) {
+            Log.info("[DiscordChat] Older config version found!\nCurrent version: " + config.getString(defaultConfigPairs[0][0]) +
                     "\nNew version: " + defaultConfigPairs[0][1] + "\n\nUpdating...");
 
             JSONObject defaultKeys = new JSONObject();
