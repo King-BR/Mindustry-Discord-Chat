@@ -7,6 +7,7 @@ import discordchat.Mindustry.Events.playerChat;
 import discordchat.Mindustry.Events.playerJoin;
 import discordchat.Mindustry.Events.playerLeave;
 import mindustry.game.EventType;
+import mindustry.gen.Player;
 import mindustry.mod.*;
 import org.javacord.api.DiscordApi;
 import org.json.JSONObject;
@@ -85,7 +86,11 @@ public class DiscordChat extends Plugin {
     //register commands that player can invoke in-game
     @Override
     public void registerClientCommands(CommandHandler handler){
-
+        handler.<Player>register("discord", "Discord invite link", (args, player) -> {
+            if (config.has("discord_invite") && !config.getString("discord_invite").isEmpty()) {
+                player.sendMessage("Join our discord!\n" + config.getString("discord_invite"));
+            } else player.sendMessage("The discord invite is not configured! Ask the server owner to configure it!");
+        });
     }
 
 }

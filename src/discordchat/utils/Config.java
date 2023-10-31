@@ -21,6 +21,8 @@ public class Config {
         "channel_announcement", ""
     },{
         "server_ip", ""
+    },{
+        "discord_invite", ""
     }};
 
     public static JSONObject createConfig(DiscordChat plugin) {
