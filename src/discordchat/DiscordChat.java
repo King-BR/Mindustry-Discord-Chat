@@ -6,6 +6,7 @@ import discordchat.Discord.Bot;
 import discordchat.Mindustry.Events.playerChat;
 import discordchat.Mindustry.Events.playerJoin;
 import discordchat.Mindustry.Events.playerLeave;
+import discordchat.Mindustry.Events.worldLoad;
 import mindustry.game.EventType;
 import mindustry.gen.Player;
 import mindustry.mod.*;
@@ -46,6 +47,8 @@ public class DiscordChat extends Plugin {
                 ex.printStackTrace();
             }
         });
+
+        Events.on(EventType.WorldLoadEvent.class, e -> worldLoad.run(bot, config, e));
     }
 
     //called when game initializes
