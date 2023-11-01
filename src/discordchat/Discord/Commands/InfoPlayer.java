@@ -19,6 +19,14 @@ public class InfoPlayer {
         if (!event.getServerTextChannel().isPresent()) return;
         ServerTextChannel channel = event.getServerTextChannel().get();
 
+        if (args.length < 2) {
+            new MessageBuilder()
+                    .append("You forgot to say the player name!")
+                    .send(channel)
+                    .join();
+            return;
+        }
+
         if (netServer.admins.findByName(args[1]).size > 0 || netServer.admins.searchNames(args[1]).size > 0) {
             ObjectSet<Administration.PlayerInfo> players = netServer.admins.findByName(args[1]);
 
