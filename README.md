@@ -5,9 +5,9 @@ Link your chat from mindustry to discord and vice versa
 
 ### Planned Features
 
+* ~~Game info (map, wave, resources, mods, plugins, etc...)~~ - Done
+* ~~Player info~~ - Done
 * Log channel for commands used by players
-* Game info (map, wave, resources, mods, plugins, etc...)
-* Player info
 * Game info in real time (maybe?)
 
 ### Building a Jar

@@ -16,7 +16,6 @@ import java.util.stream.Stream;
 import static discordchat.DiscordChat.config;
 
 public class MsgCreate implements MessageCreateListener {
-
     private final DiscordApi bot;
 
     public MsgCreate(DiscordApi _bot) {
