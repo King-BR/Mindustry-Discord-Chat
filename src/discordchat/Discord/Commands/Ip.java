@@ -11,7 +11,9 @@ import java.awt.*;
 
 public class Ip {
     public Ip(DiscordApi bot, JSONObject config, MessageCreateEvent event, String[] args) {
+        if (!event.getServerTextChannel().isPresent()) return;
         ServerTextChannel channel = event.getServerTextChannel().get();
+
         EmbedBuilder embed = new EmbedBuilder()
                 .setTimestampToNow()
                 .setTitle("Server IP")
