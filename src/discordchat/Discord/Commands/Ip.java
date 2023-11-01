@@ -14,6 +14,14 @@ public class Ip {
         if (!event.getServerTextChannel().isPresent()) return;
         ServerTextChannel channel = event.getServerTextChannel().get();
 
+        if (!config.has("server_ip") || config.getString("server_ip").isEmpty()) {
+            new MessageBuilder()
+                    .append("Server ip is not configured! Please ask the server owner to configure it!")
+                    .send(channel)
+                    .join();
+            return;
+        }
+
         EmbedBuilder embed = new EmbedBuilder()
                 .setTimestampToNow()
                 .setTitle("Server IP")
@@ -22,6 +30,7 @@ public class Ip {
 
         new MessageBuilder()
                 .setEmbed(embed)
-                .send(channel).join();
+                .send(channel)
+                .join();
     }
 }
