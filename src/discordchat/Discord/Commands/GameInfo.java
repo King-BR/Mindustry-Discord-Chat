@@ -2,6 +2,7 @@ package discordchat.Discord.Commands;
 
 import arc.util.Log;
 import arc.util.Strings;
+import discordchat.Mindustry.Events.worldLoad;
 import discordchat.utils.Utils;
 import mindustry.game.Team;
 import mindustry.game.Teams;
@@ -26,6 +27,14 @@ public class GameInfo {
     public GameInfo(DiscordApi bot, JSONObject config, MessageCreateEvent event, String[] args) {
         if (!event.getServerTextChannel().isPresent()) return;
         ServerTextChannel channel = event.getServerTextChannel().get();
+
+        if (!worldLoad.started || !state.isPlaying()) {
+            new MessageBuilder()
+                    .append("The server is offline!")
+                    .send(channel)
+                    .join();
+            return;
+        }
 
         Teams.TeamData data = !Groups.player.isEmpty() ? Groups.player.first().team().data() : state.teams.get(Team.sharded);
         CoreBlock.CoreBuild core = data.cores.first();
