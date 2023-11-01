@@ -46,7 +46,8 @@ public class MsgCreate implements MessageCreateListener {
                         try {
                             new InfoPlayer(bot, config, event, args);
                         } catch (IOException e) {
-                            Log.info("[DiscordChat] A error has ocurred on playerinfo discord command!\n"+ e);
+                            Log.info("[DiscordChat] A error has ocurred on playerinfo discord command!\n");
+                            e.printStackTrace();
                         }
                     }
                 }
