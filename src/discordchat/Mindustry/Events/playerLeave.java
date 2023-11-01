@@ -12,7 +12,7 @@ import static arc.util.Strings.stripColors;
 public class playerLeave {
     public static void run(DiscordApi bot, JSONObject config, EventType.PlayerLeave e) throws IOException, InterruptedException {
 
-        String msg = ":inbox_tray: **" + stripColors(e.player.name()) + "** left";
+        String msg = ":outbox_tray: **" + stripColors(e.player.name()) + "** left";
         new sendMsgToDiscord(bot, config, msg);
     }
 }
