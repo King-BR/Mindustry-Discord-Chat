@@ -1,5 +1,6 @@
 package discordchat.Discord.Commands;
 
+import arc.util.Log;
 import arc.util.Strings;
 import discordchat.utils.Utils;
 import mindustry.game.Team;
@@ -24,7 +25,6 @@ import static mindustry.Vars.state;
 public class GameInfo {
     public GameInfo(DiscordApi bot, JSONObject config, MessageCreateEvent event, String[] args) {
         if (!event.getServerTextChannel().isPresent()) return;
-
         ServerTextChannel channel = event.getServerTextChannel().get();
 
         Teams.TeamData data = !Groups.player.isEmpty() ? Groups.player.first().team().data() : state.teams.get(Team.sharded);
@@ -63,7 +63,7 @@ public class GameInfo {
                 .setDescription(waves)
                 .addField("Mods", mods.list().size == 0 ? "No mods" : modsStr.substring(0, modsStr.length()-2))
                 .addField("Map", map)
-                .addField("Players", Groups.player.isEmpty() ? "No players online" : players.substring(0, modsStr.length()-2));
+                .addField("Players", Groups.player.isEmpty() ? "No players online" : players.substring(0, players.length()-2));
 
         EmbedBuilder resEmbed = new EmbedBuilder()
                 .setColor(Color.ORANGE)
