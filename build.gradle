@@ -19,7 +19,7 @@ ext {
     mindustryVersion = "v146"
     jabelVersion = "93fde537c7"
     javacordVersion = "3.8.0"
-    jsonVersion = "20231013"
+    jsonVersion = "20240303"
 }
 
 //java 8 backwards compatibility flag
